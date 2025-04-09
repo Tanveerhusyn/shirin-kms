@@ -20,13 +20,13 @@ import {
 
 const menuItems = [
   { name: "Home", icon: Home, path: "/" },
-  { name: "About", icon: Info, path: "/#about" },
-  { name: "Digital Village", icon: Map, path: "/digital-village" },
+  // { name: "About", icon: Info, path: "/#about" },
+  // { name: "Digital Village", icon: Map, path: "/digital-village" },
   { name: "Local Life", icon: Users, path: "/local-life" },
-  { name: "Media Hub", icon: ImageIcon, path: "/media-hub" },
-  { name: "Events", icon: Calendar, path: "/events" },
+  // { name: "Media Hub", icon: ImageIcon, path: "/media-hub" },
+  // { name: "Events", icon: Calendar, path: "/events" },
   { name: "Gallery", icon: Camera, path: "/gallery" },
-  { name: "Explore", icon: Globe, path: "/explore" },
+  // { name: "Explore", icon: Globe, path: "/explore" },
 ]
 
 export default function Header() {

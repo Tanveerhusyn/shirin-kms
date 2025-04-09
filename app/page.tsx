@@ -19,8 +19,8 @@ export default async function IndexPage() {
       <TimelineExperience heritageData={data} />
       <VillageMapExperience />
       <LocalLifeShowcase />
-      <SeasonalArchive />
-      <LocalLifePreview />
+      {/* <SeasonalArchive />
+      <LocalLifePreview /> */}
       <MediaHubPreview />
       {/* <HeritageHub /> */}
     </section>
