@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from "react"
+import React, { ReactNode, useState } from "react"
 import Image from "next/image"
 import { MapProvider } from "@/providers/map-provider"
 import { motion } from "framer-motion"
@@ -10,17 +10,53 @@ import {
   Camera,
   Clock,
   Coffee,
+  LucideIcon,
   Mail,
   MapPin,
   Phone,
-  Tree,
+  Trees,
 } from "lucide-react"
 
 import { HoverEffect } from "@/components/ui/card-hover-effect"
 import { MapComponent } from "@/components/custom/map"
 
+// Define types
+type CardProps = {
+  className?: string
+  children: ReactNode
+}
+
+type AttractionType = {
+  title: string
+  description: string
+  link: string
+  icon: LucideIcon
+}
+
+// Define interface for HoverEffect item
+interface HoverItem {
+  title: string
+  description: string
+  link: string
+}
+
+// Define simple Card components
+const Card = ({ className, children }: CardProps) => (
+  <div className={`p-6 rounded-xl ${className}`}>{children}</div>
+)
+
+const CardTitle = ({ className, children }: CardProps) => (
+  <h3 className={`text-xl font-bold mb-2 ${className}`}>{children}</h3>
+)
+
+const CardDescription = ({ className, children }: CardProps) => (
+  <p className={`text-sm ${className}`}>{children}</p>
+)
+
 const VisitUs = () => {
-  const [selectedSeason, setSelectedSeason] = useState("spring")
+  const [selectedSeason, setSelectedSeason] = useState<
+    "spring" | "summer" | "autumn" | "winter"
+  >("spring")
 
   const seasonImages = {
     spring: "/HeroOne.jpg",
@@ -29,12 +65,39 @@ const VisitUs = () => {
     winter: "/winter-village.jpg",
   }
 
-  const attractions = [
-    { name: "Historic Town Square", icon: <MapPin size={24} /> },
-    { name: "Local Artisan Market", icon: <Coffee size={24} /> },
-    { name: "Scenic Nature Trails", icon: <Tree size={24} /> },
-    { name: "Cozy Bed & Breakfast", icon: <Bed size={24} /> },
-    { name: "Annual Cultural Festival", icon: <Camera size={24} /> },
+  const attractions: AttractionType[] = [
+    {
+      title: "Historic Town Square",
+      description:
+        "Visit our beautiful historic town square with centuries of history",
+      link: "#",
+      icon: MapPin,
+    },
+    {
+      title: "Local Artisan Market",
+      description: "Discover handcrafted treasures and local specialties",
+      link: "#",
+      icon: Coffee,
+    },
+    {
+      title: "Scenic Nature Trails",
+      description:
+        "Explore the breathtaking natural beauty surrounding our village",
+      link: "#",
+      icon: Trees,
+    },
+    {
+      title: "Cozy Bed & Breakfast",
+      description: "Stay in our charming accommodations with mountain views",
+      link: "#",
+      icon: Bed,
+    },
+    {
+      title: "Annual Cultural Festival",
+      description: "Experience our rich cultural heritage through festivities",
+      link: "#",
+      icon: Camera,
+    },
   ]
 
   return (
@@ -56,7 +119,11 @@ const VisitUs = () => {
             Experience the charm in every season
           </p>
           <div className="flex space-x-4">
-            {Object.keys(seasonImages).map((season) => (
+            {(
+              Object.keys(seasonImages) as Array<
+                "spring" | "summer" | "autumn" | "winter"
+              >
+            ).map((season) => (
               <button
                 key={season}
                 onClick={() => setSelectedSeason(season)}
@@ -92,32 +159,25 @@ const VisitUs = () => {
           <h3 className="text-2xl md:text-3xl font-bold mb-6 text-neutral-800 dark:text-neutral-200">
             Top Attractions
           </h3>
-          <HoverEffect
-            items={attractions.map((attr) => ({
-              title: attr.title,
-              description: attr.description,
-              link: "attr.link",
-            }))}
-            className="gap-4"
-          >
-            {(item) => (
-              <Card className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {attractions.map((attr, idx) => (
+              <Card
+                key={idx}
+                className="bg-white dark:bg-neutral-800 border-neutral-200 dark:border-neutral-700"
+              >
                 <CardTitle className="flex items-center text-neutral-800 dark:text-neutral-200">
-                  {React.createElement(
-                    attractions.find((a) => a.title === item.title)?.icon,
-                    {
-                      size: 24,
-                      className: "mr-2 text-neutral-600 dark:text-neutral-400",
-                    }
-                  )}
-                  {item.title}
+                  {React.createElement(attr.icon, {
+                    size: 24,
+                    className: "mr-2 text-neutral-600 dark:text-neutral-400",
+                  })}
+                  {attr.title}
                 </CardTitle>
                 <CardDescription className="text-neutral-600 dark:text-neutral-400">
-                  {item.description}
+                  {attr.description}
                 </CardDescription>
               </Card>
-            )}
-          </HoverEffect>
+            ))}
+          </div>
         </section>
 
         {/* Interactive Map */}

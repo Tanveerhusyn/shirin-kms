@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import {
+  BookOpen,
   Building,
   ChevronDown,
   ChevronRight,
@@ -8,13 +9,29 @@ import {
   Heart,
   Home,
   Leaf,
+  LucideIcon,
   PiggyBank,
-  School,
   Users,
 } from "lucide-react"
 
-const IconComponent = ({ iconName, className }) => {
-  const IconMap = {
+interface IconProps {
+  iconName: string
+  className?: string
+}
+
+interface TreeNodeItem {
+  name: string
+  icon: string
+  children?: TreeNodeItem[]
+}
+
+interface TreeNodeProps {
+  node: TreeNodeItem
+  level?: number
+}
+
+const IconComponent = ({ iconName, className }: IconProps) => {
+  const IconMap: Record<string, LucideIcon> = {
     Home,
     Users,
     Droplet,
@@ -23,13 +40,13 @@ const IconComponent = ({ iconName, className }) => {
     GraduationCap,
     PiggyBank,
     Leaf,
-    School,
+    BookOpen,
   }
   const Icon = IconMap[iconName]
   return Icon ? <Icon className={className} /> : null
 }
 
-const TreeNode = ({ node, level = 0 }) => {
+const TreeNode = ({ node, level = 0 }: TreeNodeProps) => {
   const [isOpen, setIsOpen] = useState(true)
   const hasChildren = node.children && node.children.length > 0
 
@@ -56,7 +73,7 @@ const TreeNode = ({ node, level = 0 }) => {
       </div>
       {isOpen && hasChildren && (
         <div className="mt-2 ml-4 pl-2 border-l-2 border-green-300">
-          {node.children.map((child, index) => (
+          {node.children?.map((child, index) => (
             <TreeNode key={index} node={child} level={level + 1} />
           ))}
         </div>
@@ -95,7 +112,7 @@ const VillageHierarchy = () => {
           { name: "Community Health Center", icon: "Heart" },
           {
             name: "Educational Institutions",
-            icon: "School",
+            icon: "BookOpen",
             children: [
               { name: "Primary School", icon: "GraduationCap" },
               { name: "Secondary School", icon: "GraduationCap" },

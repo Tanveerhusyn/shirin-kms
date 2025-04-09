@@ -1,0 +1,25 @@
+<svg width="1000" height="1000" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+  <!-- Historical footpaths around Shirin Kamaris -->
+  <g stroke="#8B4513" fill="none" stroke-dasharray="5,5" opacity="0.7">
+    <!-- Main path through the village -->
+    <path d="M200,500 C300,450 400,480 500,500 C600,520 700,510 800,450" stroke-width="3"/>
+    
+    <!-- Path to the well -->
+    <path d="M500,500 C490,450 470,420 450,400" stroke-width="2"/>
+    
+    <!-- Path to the sacred tree -->
+    <path d="M500,500 C520,480 550,470 580,460" stroke-width="2"/>
+    
+    <!-- Path to elder's house -->
+    <path d="M500,500 C480,520 450,540 430,560" stroke-width="2"/>
+    
+    <!-- Mountain trail -->
+    <path d="M580,460 C620,420 650,370 670,320" stroke-width="1.5" stroke-dasharray="3,3"/>
+    
+    <!-- Valley trail -->
+    <path d="M430,560 C400,600 360,620 320,630" stroke-width="1.5" stroke-dasharray="3,3"/>
+    
+    <!-- Trail to neighboring village -->
+    <path d="M800,450 C850,430 900,420 950,430" stroke-width="2"/>
+  </g>
+</svg> 

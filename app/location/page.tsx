@@ -14,7 +14,7 @@ import {
   MapPin,
   Mountain,
   Plane,
-  Tree,
+  Trees,
   Utensils,
 } from "lucide-react"
 
@@ -50,8 +50,10 @@ export default function LocationAndVisit() {
   )
 }
 
-export const SeasonalImages = () => {
-  const [selectedSeason, setSelectedSeason] = useState("spring")
+const SeasonalImages = () => {
+  const [selectedSeason, setSelectedSeason] = useState<
+    "spring" | "summer" | "autumn" | "winter"
+  >("spring")
 
   const seasonImages = {
     spring: "/HeroOne.jpg",
@@ -60,28 +62,28 @@ export const SeasonalImages = () => {
     winter: "/winter-village.jpg",
   }
 
+  const seasons = ["spring", "summer", "autumn", "winter"] as const
+
   return (
-    <div className="relative h-full w-full">
-      <Image
-        src={seasonImages[selectedSeason]}
-        alt={`Village in ${selectedSeason}`}
-        layout="fill"
-        objectFit="cover"
-        className="rounded-xl"
-      />
-      <div className="absolute inset-0 flex flex-col items-center justify-end p-4 bg-gradient-to-t from-black to-transparent rounded-xl">
-        <p className="text-white text-xl mb-4">
-          Experience our village in every season
-        </p>
-        <div className="flex space-x-2">
-          {Object.keys(seasonImages).map((season) => (
+    <div className="relative w-full min-h-[50vh] overflow-hidden rounded-2xl">
+      <div className="absolute inset-0 z-10">
+        <Image
+          src={seasonImages[selectedSeason]}
+          alt={`${selectedSeason} in Gulmit Village`}
+          fill
+          className="object-cover"
+        />
+      </div>
+      <div className="absolute bottom-0 left-0 z-20 p-4 w-full">
+        <div className="flex space-x-2 bg-black/50 backdrop-blur-sm py-2 px-3 rounded-full w-fit mx-auto">
+          {seasons.map((season) => (
             <button
               key={season}
               onClick={() => setSelectedSeason(season)}
               className={`px-3 py-1 rounded-full text-xs ${
                 selectedSeason === season
                   ? "bg-white text-black"
-                  : "bg-black bg-opacity-50 text-white hover:bg-opacity-75"
+                  : "bg-transparent text-white"
               }`}
             >
               {season.charAt(0).toUpperCase() + season.slice(1)}

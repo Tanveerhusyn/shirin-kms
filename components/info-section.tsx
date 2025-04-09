@@ -10,21 +10,21 @@ import {
   Home,
   Mountain,
   Sun,
-  Tree,
+  Trees,
   Users,
 } from "lucide-react"
 import * as LucideIcons from "lucide-react"
 
-import VillageProfile from "@/components/custom/VillageProfile.tsx"
-import VillageDataSection from "@/components/custom/VillateDataSection.tsx"
+import VillageProfile from "@/components/custom/VillageProfile"
+import VillageDataSection from "@/components/custom/VillateDataSection"
 
 export default function ShirinKamarisProfile() {
   const [activeTab, setActiveTab] = useState(0)
-  const [expandedSection, setExpandedSection] = useState(null)
+  const [expandedSection, setExpandedSection] = useState<number | null>(null)
 
   const villageData = [
     {
-      icon: Tree,
+      icon: Trees,
       title: "Natural Beauty",
       value: "4,000 hectares",
       description:

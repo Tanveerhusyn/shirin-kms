@@ -6,7 +6,13 @@ import Image from "next/image"
 import { Timeline } from "../../components/ui/timeline"
 
 export default function VillageTimelineDemo() {
-  const AchievementItem = ({ title, bulletPoints }) => (
+  const AchievementItem = ({
+    title,
+    bulletPoints,
+  }: {
+    title: string
+    bulletPoints: string[]
+  }) => (
     <div className="mb-4 bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-sm">
       <h4 className="text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-semibold mb-2">
         {title}

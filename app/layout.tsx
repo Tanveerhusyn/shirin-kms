@@ -29,11 +29,11 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en" className="w-full">
+    <html lang="en" className="w-full h-full">
       <head />
-      <body className="w-full min-h-screen">
+      <body className="w-full min-h-screen h-full">
         <Header />
-        <main className="w-full">{children}</main>
+        <main className="w-full h-full">{children}</main>
       </body>
     </html>
   )

@@ -10,6 +10,7 @@ const nextConfig = {
       "assets.mixkit.co",
       "hkfgdgzxxyxhxnbxkesa.supabase.co",
       "assets.aceternity.com",
+      "myihfbymneayrqkpsbnx.supabase.co",
     ],
   },
 }
